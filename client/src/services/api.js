@@ -1,3 +1,20 @@
+const baseUrl = import.meta.env.VITE_API_URL || '/api';
+
+export function apiFetch(path, { method = 'GET', body, token, isForm = false } = {}) {
+  const headers = {};
+  if (token) headers['Authorization'] = `Bearer ${token}`;
+  if (!isForm) headers['Content-Type'] = 'application/json';
+  return fetch(`${baseUrl}${path}`, {
+    method,
+    headers,
+    body: isForm ? body : body ? JSON.stringify(body) : undefined,
+  }).then(async (res) => {
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.message || 'Request failed');
+    return data;
+  });
+}
+
 // api.js - API service for making requests to the backend
 
 import axios from 'axios';
