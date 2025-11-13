@@ -1,20 +1,22 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
+import { seedCategories } from "../utils/seedCategories.js";
 
 const connectDb = async () => {
-  const mongoUri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/mern_blog';
+  const mongoUri =
+    process.env.MONGO_URI || "mongodb://127.0.0.1:27017/mern_blog";
   try {
-    await mongoose.connect(mongoUri, { 
-      dbName: process.env.MONGO_DB || 'mern_blog'
+    await mongoose.connect(mongoUri, {
+      dbName: process.env.MONGO_DB || "mern_blog",
     });
     // eslint-disable-next-line no-console
-    console.log('MongoDB connected');
+    console.log("MongoDB connected");
+    // Seed default categories after connection
+    await seedCategories();
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error('MongoDB connection error:', error.message);
+    console.error("MongoDB connection error:", error.message);
     process.exit(1);
   }
 };
 
 export default connectDb;
-
-

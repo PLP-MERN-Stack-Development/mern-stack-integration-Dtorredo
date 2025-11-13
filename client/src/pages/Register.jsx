@@ -24,15 +24,17 @@ export default function Register() {
   };
 
   return (
-    <form className="stack" onSubmit={onSubmit}>
-      <h2>Register</h2>
-      {error && <p style={{ color: 'red' }}>{error.message}</p>}
-      <input className="input" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
-      <input className="input" placeholder="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      <input className="input" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-      <button className="btn" type="submit">Create account</button>
-      <p>Already have an account? <Link to="/login">Login</Link></p>
-    </form>
+    <div className="container">
+      <form className="stack" onSubmit={onSubmit} style={{ maxWidth: '400px', margin: '48px auto' }}>
+        <h2 style={{ color: '#ffffff' }}>Register</h2>
+        {error && <p style={{ color: '#ff6b6b' }}>{error.message}</p>}
+        <input className="input" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
+        <input className="input" placeholder="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        <input className="input" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        <button className="btn" type="submit">Create account</button>
+        <p style={{ color: '#C0FAE6', textAlign: 'center' }}>Already have an account? <Link to="/login" style={{ color: '#C0FAE6', textDecoration: 'underline' }}>Login</Link></p>
+      </form>
+    </div>
   );
 }
 

@@ -44,8 +44,17 @@ export const createPost = async (req, res, next) => {
   try {
     const { title, content, category } = req.body;
     const featuredImageUrl = req.file ? `/uploads/${req.file.filename}` : undefined;
-    const post = await Post.create({ title, content, category, featuredImageUrl, author: req.user?._id });
-    res.status(201).json(post);
+    const post = await Post.create({ 
+      title, 
+      content, 
+      category, 
+      featuredImageUrl, 
+      author: req.user?._id 
+    });
+    const populatedPost = await Post.findById(post._id)
+      .populate('category')
+      .populate('author', 'name email');
+    res.status(201).json(populatedPost);
   } catch (error) {
     next(error);
   }
@@ -59,8 +68,12 @@ export const updatePost = async (req, res, next) => {
   }
   try {
     const updates = { ...req.body };
-    if (req.file) updates.featuredImageUrl = `/uploads/${req.file.filename}`;
-    const post = await Post.findByIdAndUpdate(req.params.id, updates, { new: true });
+    if (req.file) {
+      updates.featuredImageUrl = `/uploads/${req.file.filename}`;
+    }
+    const post = await Post.findByIdAndUpdate(req.params.id, updates, { new: true })
+      .populate('category')
+      .populate('author', 'name email');
     if (!post) {
       res.status(404);
       throw new Error('Post not found');
