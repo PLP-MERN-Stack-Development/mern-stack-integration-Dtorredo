@@ -1,6 +1,11 @@
-#  MERN Stack Blog Application
+# MERN Stack Blog Application
 
 A full-stack blog application built with MongoDB, Express.js, React.js, and Node.js. This project demonstrates seamless integration between front-end and back-end components with authentication, image uploads, and a modern dark-themed UI.
+
+<div align="center">
+  <img src="SCR-20251113-htlt.png" alt="Application Screenshot 1" width="600" style="margin: 10px;" />
+  <img src="SCR-20251113-htkm.png" alt="Application Screenshot 2" width="600" style="margin: 10px;" />
+</div>
 
 ![MERN Stack](https://img.shields.io/badge/MERN-Stack-green)
 ![Node.js](https://img.shields.io/badge/Node.js-v18+-green)
@@ -108,8 +113,8 @@ Before you begin, ensure you have the following installed:
 - **MongoDB** (local installation or MongoDB Atlas account)
   - Local: [MongoDB Community Server]
   - Cloud: [MongoDB Atlas]
-- **npm** or **yarn** 
-- **Git** 
+- **npm** or **yarn**
+- **Git**
 
 ## 📦 Installation
 
@@ -458,7 +463,6 @@ PORT=5002
   - `GET /api/categories`
   - `POST /api/auth/register`
   - `POST /api/auth/login`
-
 
 ## 👤 Author
 
